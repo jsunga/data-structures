@@ -95,7 +95,7 @@ class LinkedList {
       cur.next = temp
       cur = cur.prev
     }
-    if (temp !== null) { this.head = temp.prev }
+    if (temp !== null) this.head = temp.prev
     let node = this.head
     while (node.next !== null) { node = node.next }
     this.tail = node
@@ -112,9 +112,31 @@ class LinkedList {
   printSize() {
     console.log(this.size)
   }
+  deleteDuplicates() {
+    let hm = new Map()
+    let currentNode = this.head
+    let left = null
+    let right = null
+    while (currentNode !== null) {
+      if (!hm.has(currentNode.data)) hm.set(currentNode.data, 0)
+      else if (currentNode === this.tail && hm.has(currentNode.data)) {
+        let left = currentNode.prev
+        left.next = null
+        currentNode.prev = null
+      }
+      else {
+        left = currentNode.prev
+        right = currentNode.next
+        left.next = right
+        right.prev = left
+      }
+      currentNode = currentNode.next
+    }
+  }
 }
 
 let list = new LinkedList()
+/*
 list.pushFront(5)
 list.pushFront(4)
 list.pushFront(3)
@@ -122,4 +144,21 @@ list.pushFront(2)
 list.pushFront(1)
 list.print()
 list.reverseList()
+list.print()
+*/
+
+list.pushBack(5)
+list.pushBack(5)
+list.pushBack(1)
+list.pushBack(2)
+list.pushBack(2)
+list.pushBack(2)
+list.pushBack(3)
+list.pushBack(4)
+list.pushBack(5)
+list.pushBack(2)
+list.pushBack(2)
+list.pushBack(5)
+list.print()
+list.deleteDuplicates()
 list.print()
