@@ -6,13 +6,16 @@ class Node {
 }
 
 class BST {
+
   constructor(data) {
     this.root = new Node(data)
     this.size = 1
   }
+
   size() {
     return this.size
   }
+
   insert(data) {
     this.size++
     let newNode = new Node(data)
@@ -38,6 +41,7 @@ class BST {
 
     searchTree(this.root)
   }
+
   min() {
     let currentNode = this.root
 
@@ -47,6 +51,7 @@ class BST {
 
     return currentNode.data
   }
+
   max() {
     let currentNode = this.root
 
@@ -56,6 +61,7 @@ class BST {
 
     return currentNode.data
   }
+
   contains(data) {
     let currentNode = this.root
 
@@ -72,6 +78,7 @@ class BST {
 
     return false
   }
+
   //depth first search
 
   //in-order left, root, right
@@ -88,6 +95,7 @@ class BST {
     traverse(this.root)
     return result
   }
+
   //pre-order root, left, right
   //15, 3, 2, 12, 36, 28, 39
   dfsPreOrder() {
@@ -102,6 +110,7 @@ class BST {
     traverse(this.root)
     return result
   }
+
   //post-order left, right, root
   //2, 12, 3, 28, 39, 36, 15
   dfsPostOrder() {
@@ -116,6 +125,7 @@ class BST {
     traverse(this.root)
     return result
   }
+
   //breadth first search
   //15, 3, 36, 2, 12, 28, 29
   bfs() {
@@ -125,10 +135,14 @@ class BST {
     queue.push(this.root)
 
     while (queue.length) {
+      //dequeue
       let currentNode = queue.shift()
 
+      //push to result
       result.push(currentNode.data)
 
+      //enqueue child nodes
+      //push to result
       if (currentNode.left) {
         queue.push(currentNode.left)
       }
@@ -139,6 +153,7 @@ class BST {
 
     return result
   }
+  
 }
 
 let bst = new BST(15)
